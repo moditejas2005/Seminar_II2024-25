@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Functions Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>String Length Calculator</h2>
+  <input type="text" id="inputString" placeholder="Enter a string">
+  <button onclick="calculateLength()">Get Length</button>
+  <p class="output" id="lengthOutput"></p>
+
+  <h2>Reverse Number Digits</h2>
+  <input type="number" id="inputNumber" placeholder="Enter a number">
+  <button onclick="reverseDigits()">Reverse Digits</button>
+  <p class="output" id="reverseOutput"></p>
+</div>
+
+<script>
+  function calculateLength() {
+    let str = document.getElementById("inputString").value;
+    let length = str.length;
+    document.getElementById("lengthOutput").innerText = "Length of the string: " + length;
+  }
+
+  function reverseDigits() {
+    let num = document.getElementById("inputNumber").value;
+    let reversed = num.toString().split('').reverse().join('');
+    document.getElementById("reverseOutput").innerText = "Reversed number: " + reversed;
+  }
+</script>
+
+</body>
+</html>

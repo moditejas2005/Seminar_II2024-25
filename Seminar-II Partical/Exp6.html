@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prime Numbers in a Range</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef6f8;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .output {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00695c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Find Prime Numbers Between Two Numbers</h2>
+  <input type="number" id="startNum" placeholder="Enter starting number">
+  <input type="number" id="endNum" placeholder="Enter ending number">
+  <button onclick="findPrimes()">Show Prime Numbers</button>
+  <p class="output" id="primeOutput"></p>
+</div>
+
+<script>
+  function isPrime(n) {
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    if (n % 2 === 0 || n % 3 === 0) return false;
+    for (let i = 5; i * i <= n; i += 6) {
+      if (n % i === 0 || n % (i + 2) === 0) return false;
+    }
+    return true;
+  }
+
+  function findPrimes() {
+    const start = parseInt(document.getElementById("startNum").value);
+    const end = parseInt(document.getElementById("endNum").value);
+    let primes = [];
+
+    if (isNaN(start) || isNaN(end) || start > end) {
+      document.getElementById("primeOutput").innerText = "Please enter a valid range.";
+      return;
+    }
+
+    for (let i = start; i <= end; i++) {
+      if (isPrime(i)) {
+        primes.push(i);
+      }
+    }
+
+    document.getElementById("primeOutput").innerText = 
+      primes.length > 0 
+        ? "Prime numbers: " + primes.join(", ") 
+        : "No prime numbers found in the range.";
+  }
+</script>
+
+</body>
+</html>

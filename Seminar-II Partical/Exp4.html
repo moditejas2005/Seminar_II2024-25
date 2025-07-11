@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <title>Employee Form Validation</title> 
+  <style> 
+    form { 
+      max-width: 400px; 
+      margin: auto; 
+      padding: 20px; 
+      border: 1px solid #ccc; 
+      border-radius: 10px; 
+      background: #f9f9f9; 
+    } 
+    input, textarea { 
+      width: 100%; 
+      padding: 10px; 
+      margin: 10px 0; 
+      border-radius: 5px; 
+      border: 1px solid #ccc; 
+    } 
+    button { 
+      padding: 10px 20px; 
+      background: #4caf50; 
+      color: white; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+    } 
+    .error { 
+      color: red; 
+      font-size: 0.9em; 
+    } 
+  </style> 
+</head> 
+<body> 
+ 
+  <form onsubmit="return validateForm()" id="employeeForm"> 
+    <h2>Employee Details</h2> 
+ 
+    <label>Email:</label> 
+    <input type="text" id="email" /> 
+    <div class="error" id="emailError"></div> 
+ 
+    <label>Name:</label> 
+    <input type="text" id="name" /> 
+    <div class="error" id="nameError"></div> 
+ 
+    <label>Mobile No.:</label> 
+    <input type="text" id="mobile" /> 
+    <div class="error" id="mobileError"></div> 
+ 
+    <label>Address:</label> 
+    <textarea id="address"></textarea> 
+    <div class="error" id="addressError"></div> 
+ 
+    <label>Salary:</label> 
+    <input type="text" id="salary" /> 
+    <div class="error" id="salaryError"></div> 
+ 
+    <button type="submit">Submit</button> 
+  </form> 
+ 
+  <script> 
+    function validateForm() { 
+      let isValid = true; 
+ 
+      const email = document.getElementById('email').value.trim(); 
+      const name = document.getElementById('name').value.trim(); 
+      const mobile = document.getElementById('mobile').value.trim(); 
+      const address = document.getElementById('address').value.trim(); 
+      const salary = document.getElementById('salary').value.trim(); 
+ 
+      document.getElementById('emailError').innerText = ''; 
+      document.getElementById('nameError').innerText = ''; 
+      document.getElementById('mobileError').innerText = ''; 
+      document.getElementById('addressError').innerText = ''; 
+      document.getElementById('salaryError').innerText = ''; 
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+      if (!emailPattern.test(email)) { 
+        document.getElementById('emailError').innerText = 'Enter a valid email.'; 
+        isValid = false; 
+      } 
+      if (name.length < 2 || !/^[a-zA-Z ]+$/.test(name)) { 
+        document.getElementById('nameError').innerText = 'Enter a valid name.'; 
+        isValid = false; 
+      } 
+      const mobilePattern = /^[0-9]{10}$/; 
+      if (!mobilePattern.test(mobile)) { 
+        document.getElementById('mobileError').innerText = 'Enter a valid 10-digit mobile number.'; 
+        isValid = false; 
+      } 
+      if (address.length < 5) { 
+        document.getElementById('addressError').innerText = 'Address should be at least 5 characters.'; 
+        isValid = false; 
+      } 
+      const salaryValue = parseFloat(salary); 
+      if (isNaN(salaryValue) || salaryValue <= 0) { 
+        document.getElementById('salaryError').innerText = 'Enter a valid positive number for salary.'; 
+        isValid = false; 
+      } 
+return isValid; 
+} 
+</script> 
+</body> 
+</html>
